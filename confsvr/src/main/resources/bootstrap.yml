@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: configserver
+#  profiles:
+#    active:
+#      dev
+#  cloud:
+#    config:
+#      server:
+#        git:
+#          uri: https://github.com/kokuma222/config-repo
+#          searchPaths: licensingservice
+#
+#server:
+#  port: 8888

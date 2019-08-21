@@ -1,0 +1,28 @@
+# http 请求地址和资源文件映射如下:
+# /{application}/{profile}[/{label}]
+
+spring:
+#  application:
+#    name: configserver
+  profiles:
+    active: dev
+  cloud:
+    config:
+#      仓库的分支
+#      label: master
+      server:
+        git:
+          uri: https://github.com/kokuma222/microservice-repo
+          searchPaths: licensingservice
+
+server:
+  port: 8888
+
+#spring:
+#  profiles:
+#    active: native
+#  cloud:
+#    config:
+#      server:
+#        native:
+#          searchLocation: file:///E:/program/JAVA/Spring/microservices/config-repo
