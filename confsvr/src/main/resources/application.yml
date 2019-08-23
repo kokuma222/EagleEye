@@ -4,12 +4,11 @@
 spring:
 #  application:
 #    name: configserver
-  profiles:
-    active: dev
   cloud:
     config:
 #      仓库的分支
 #      label: master
+      profile: dev
       server:
         git:
           uri: https://github.com/kokuma222/microservice-repo
