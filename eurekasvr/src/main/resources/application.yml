@@ -1,0 +1,15 @@
+#Default port is 8761
+server:
+  port: 8761
+
+eureka:
+  instance:
+    hostname: 192.168.0.129
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}
+#  本地测试时使用
+#  server:
+#    wait-time-in-ms-when-sync-empty: 5

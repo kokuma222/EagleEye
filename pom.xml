@@ -19,6 +19,8 @@
   <modules>
     <module>confsvr</module>
     <module>licensing-service</module>
+    <module>organization-service</module>
+    <module>eurekasvr</module>
   </modules>
   <build>
     <plugins>

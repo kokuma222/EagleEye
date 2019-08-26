@@ -29,6 +29,13 @@ public class LicenseServiceController {
                 .withComment(serviceConfig.getExampleProperty());*/
     }
 
+    @RequestMapping(value = "/{licenseId}/{clientType}", method = RequestMethod.GET)
+    public License getLicensesWithClient(@PathVariable("organizationId") String organizationId,
+                                         @PathVariable("licenseId") String licenseId,
+                                         @PathVariable("clientType") String clientType) {
+        return licenseService.getLicense(organizationId, licenseId, clientType);
+    }
+
     @RequestMapping(value="{licenseId}",method = RequestMethod.PUT)
     public String updateLicenses( @PathVariable("licenseId") String licenseId) {
 //        return String.format("This is the put");
