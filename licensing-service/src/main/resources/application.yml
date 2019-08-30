@@ -13,3 +13,6 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: http://192.168.0.129:8761/eureka/
+
+logging:
+  config: classpath:log4j2.properties
