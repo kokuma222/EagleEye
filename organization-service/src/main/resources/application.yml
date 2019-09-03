@@ -14,9 +14,10 @@ info:
 eureka:
   instance:
     prefer-ip-address: true
-    instance-id: ${eureka.instance.ip-address}:${eureka.instance.appname}:${server.port}
-    appname: eagle-eye-organization-service
-    ip-address: 192.168.0.129
+    hostname: localhost
+#    instance-id: ${eureka.instance.ip-address}:${eureka.instance.appname}:${server.port}
+#    appname: eagle-eye-organization-service
+#    ip-address: 192.168.0.129
   client:
     register-with-eureka: true
     fetch-registry: true
