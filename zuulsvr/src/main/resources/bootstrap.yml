@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: zuulservice
+  profiles:
+    active: default
+  cloud:
+    config:
+      profile: default
+      uri: http://192.168.0.129:8888
+      enabled: true
+    inetutils:
+      preferred-networks: 192.168.0

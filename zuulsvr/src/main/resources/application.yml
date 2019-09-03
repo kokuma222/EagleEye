@@ -1,0 +1,52 @@
+server:
+  port: 5555
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    hostname: localhost
+#    instance-id: ${eureka.instance.ip-address}:${eureka.instance.appname}:${server.port}
+#    appname: zuul-service
+#    ip-address: 192.168.0.129
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://192.168.0.129:8761/eureka/
+
+zuul:
+  #  host:
+  #    socket-timeout-millis: 60000
+  #    connect-timeout-millis: 60000
+  prefix: /api
+  routes:
+    organization:
+      path: /organization/**
+      service-id: organizationservice
+#      url: http://192.168.0.129:8085
+#  routes:
+#    organizationservice: /organization/**
+
+management:
+  security:
+    enabled: false
+
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          strategy: THREAD
+          thread:
+            timeoutInMilliseconds: 60000
+
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+  maxAutoRetries: 1
+  maxAutoRetriesNextServer: 3
+  okToRetryOnAllOperation: true
+  eureka:
+    enabled: true
