@@ -1,6 +1,6 @@
 spring:
   application:
-    name: orgnewservice
+    name: organizationservice
   profiles:
     active: default
   cloud:
