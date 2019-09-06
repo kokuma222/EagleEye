@@ -12,7 +12,7 @@ spring:
       server:
         git:
           uri: https://github.com/kokuma222/microservice-repo
-          searchPaths: licensingservice,organizationservice,zuulservice,authenticationservice,specialroutesservice
+          searchPaths: licensingservice,organizationservice,zuulservice,authenticationservice,specialroutesservice,orgnewservice
 
 server:
   port: 8888

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -23,6 +24,9 @@ public class LicenseServiceController {
     @Autowired
     private ServiceConfig serviceConfig;
 
+    @Autowired
+    private HttpServletRequest request;
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public List<License> getLicenses(@PathVariable("organizationId") String organizationId) {
         logger.info("LicenseServiceController Correlation id: {}", UserContextHolder.getContext().getCorrelationId());
@@ -31,8 +35,9 @@ public class LicenseServiceController {
 
     @RequestMapping(value="/{licenseId}",method = RequestMethod.GET)
     public License getLicenses( @PathVariable("organizationId") String organizationId,
-                                @PathVariable("licenseId") String licenseId) {
+                                @PathVariable("licenseId") String licenseId) throws InterruptedException {
 
+        logger.warn("Found tmx-correlation-id in license-service-controller: {} ", request.getHeader("tmx-correlation-id"));
         return licenseService.getLicense(organizationId, licenseId);
         /*return new License()
                 .withId(licenseId)

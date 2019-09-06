@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: orgnewservice
+  profiles:
+    active: default
+  cloud:
+    config:
+      enabled: true
+      profile: dev
+      uri: http://192.168.0.129:8888
+
+    inetutils:
+      preferred-networks: 192.168.0
+
+management:
+  security:
+    enabled: false
+
+server:
+  port: 8087

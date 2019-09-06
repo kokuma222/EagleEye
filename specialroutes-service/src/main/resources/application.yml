@@ -1,0 +1,19 @@
+logging:
+  config: classpath:log4j2.properties
+
+info:
+  app.name: eagle-eye-specialroutes-service
+  company.name: www.zzz.com
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    hostname: localhost
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://192.168.0.129:8761/eureka
+
+server:
+  port: 8956

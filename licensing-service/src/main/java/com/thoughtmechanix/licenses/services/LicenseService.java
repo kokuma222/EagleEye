@@ -73,9 +73,26 @@ public class LicenseService {
                 .withComment(config.getExampleProperty());
     }
 
-    public License getLicense(String organizationId, String licenseId) {
+    /*public License getLicense(String organizationId, String licenseId) {
         License license = licenseRepository.findByOrganizationIdAndLicenseId(organizationId, licenseId);
         return license.withComment(config.getExampleProperty());
+    }*/
+
+    public License getLicense(String organizationId, String licenseId) throws InterruptedException{
+        License license = licenseRepository.findByOrganizationIdAndLicenseId(organizationId, licenseId);
+
+        Organization org = getOrganization(organizationId);
+
+        return license
+                .withOrganizationName(org.getName())
+                .withContactName(org.getContactName())
+                .withContactEmail(org.getContactEmail())
+                .withContactPhone(org.getContactPhone())
+                .withComment(config.getExampleProperty());
+    }
+
+    private Organization getOrganization(String organizationId) {
+        return organizationRestTemplateClient.getOrganization(organizationId);
     }
 
     private void randomlyRunLong() {

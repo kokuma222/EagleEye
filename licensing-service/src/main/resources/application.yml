@@ -17,3 +17,6 @@ eureka:
 
 logging:
   config: classpath:log4j2.properties
+
+server:
+  port: 9009
