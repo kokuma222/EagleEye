@@ -35,10 +35,12 @@ public class ResponseFilter extends ZuulFilter {
     public Object run() {
         RequestContext ctx = RequestContext.getCurrentContext();
 
-        logger.warn("Adding the correlation id to the outbound headers in response filter. {}", filterUtils.getCorrelationId());
+        logger.error("======> Adding the correlation id to the outbound headers in response filter. ===> {}", filterUtils.getCorrelationId());
         ctx.getResponse().addHeader(FilterUtils.CORRELATION_ID, filterUtils.getCorrelationId());
 
-        logger.warn("Completing outgoing request for {}.", ctx.getRequest().getRequestURI());
+        logger.error("======> Completing outgoing request for {}.", ctx.getRequest().getRequestURI());
+        logger.error("======> ResponseFilter context response body ===> {}", ctx.getResponseBody());
+        logger.error("======> ResponseFilter context response data stream ===> {}", ctx.getResponseDataStream());
 
         return null;
     }

@@ -86,7 +86,8 @@ public class SpecialRoutesFilter extends ZuulFilter {
         int index = oldEndpoint.indexOf(serviceName);
 
         String strippedRoute = oldEndpoint.substring(index + serviceName.length());
-        System.out.println("Target route: " + String.format("%s/%s", newEndpoint, strippedRoute));
+        logger.error("======> Target route: {}", String.format("%s/%s", newEndpoint, strippedRoute));
+//        System.out.println("Target route: " + String.format("%s/%s", newEndpoint, strippedRoute));
 
         return String.format("%s/%s", newEndpoint, strippedRoute);
     }
@@ -115,10 +116,10 @@ public class SpecialRoutesFilter extends ZuulFilter {
     private HttpResponse forwardRequest(HttpClient httpClient, HttpHost httpHost, HttpRequest httpRequest) throws IOException {
         HttpResponse httpResponse = httpClient.execute(httpHost, httpRequest);
 
-        logger.error("HttpClient response status {}", httpResponse.getStatusLine());
+        logger.error("======> HttpClient response status {}", httpResponse.getStatusLine());
         Scanner sc = new Scanner(httpResponse.getEntity().getContent());
         while (sc.hasNext()) {
-            logger.error("HttpClient response content {}", sc.nextLine());
+            logger.error("======> HttpClient response content {}", sc.nextLine());
         }
 
         return httpResponse;
@@ -152,8 +153,8 @@ public class SpecialRoutesFilter extends ZuulFilter {
                 reverHeaders(response.getAllHeaders()));
 
         RequestContext ctx = RequestContext.getCurrentContext();
-        logger.error("setResponse ===> context response body {}", ctx.getResponseBody());
-        logger.error("setResponse ===> context response data stream {}", ctx.getResponseDataStream());
+        logger.error("======> setResponse ===> context response body {}", ctx.getResponseBody());
+        logger.error("======> setResponse ===> context response data stream {}", ctx.getResponseDataStream());
     }
 
     private HttpResponse forward(HttpClient httpClient, String verb, String uri, HttpServletRequest request, MultiValueMap<String, String> headers,
@@ -210,7 +211,7 @@ public class SpecialRoutesFilter extends ZuulFilter {
         AbTestingRoute abTestingRoute = getAbRoutingInfo(filterUtils.getServiceId());
 
         if (abTestingRoute != null && useSpecialRoute(abTestingRoute)) {
-            logger.error("Here, hahahahhhhh");
+            logger.error("======> Here, hahahahhhhh");
 
             String route = buildRouteString(ctx.getRequest().getRequestURI(),
                     abTestingRoute.getEndpoint(),
@@ -242,8 +243,8 @@ public class SpecialRoutesFilter extends ZuulFilter {
             response = forward(httpClient, verb, route, request, headers, params, requestEntity);
             setResponse(response);
 
-            logger.error("======>forwardToSpecialRoute context response body ===> {}", ctx.getResponseBody());
-            logger.error("======>forwardToSpecialRoute context response data stream ===> {}", ctx.getResponseDataStream());
+            logger.error("======> forwardToSpecialRoute context response body ===> {}", ctx.getResponseBody());
+            logger.error("======> forwardToSpecialRoute context response data stream ===> {}", ctx.getResponseDataStream());
         } catch (Exception ex) {
             ex.printStackTrace();
         } finally {
