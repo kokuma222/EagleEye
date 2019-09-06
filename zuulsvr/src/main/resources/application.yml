@@ -53,4 +53,14 @@ ribbon:
     enabled: true
 
 logging:
-  config: classpath:log4j2.properties
+#  path: D:/tmp/logs
+#  file: app.log
+  level:
+    com.netflix: WARN
+    org.springframework.web: WARN
+    com.thoughtmechanix: DEBUG
+#  config: classpath:log4j2.properties
+#spring:
+#  output:
+#    ansi:
+#      enabled: always
