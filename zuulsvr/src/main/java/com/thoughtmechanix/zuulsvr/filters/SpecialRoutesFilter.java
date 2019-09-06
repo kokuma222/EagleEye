@@ -152,9 +152,19 @@ public class SpecialRoutesFilter extends ZuulFilter {
                 response.getEntity() == null ? null : response.getEntity().getContent(),
                 reverHeaders(response.getAllHeaders()));
 
-        RequestContext ctx = RequestContext.getCurrentContext();
+        Scanner sc = new Scanner(response.getEntity().getContent());
+        while (sc.hasNext()) {
+            logger.error("======> setResponse response content {}", sc.nextLine());
+        }
+
+        /*RequestContext ctx = RequestContext.getCurrentContext();
+        InputStream entity = response.getEntity().getContent();
+        if (entity != null) {
+            ctx.setResponseDataStream(entity);
+        }
+
         logger.error("======> setResponse ===> context response body {}", ctx.getResponseBody());
-        logger.error("======> setResponse ===> context response data stream {}", ctx.getResponseDataStream());
+        logger.error("======> setResponse ===> context response data stream {}", ctx.getResponseDataStream());*/
     }
 
     private HttpResponse forward(HttpClient httpClient, String verb, String uri, HttpServletRequest request, MultiValueMap<String, String> headers,
