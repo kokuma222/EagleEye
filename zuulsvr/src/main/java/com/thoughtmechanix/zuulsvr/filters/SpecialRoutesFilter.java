@@ -42,6 +42,8 @@ public class SpecialRoutesFilter extends ZuulFilter {
     private static final boolean SHOULD_FILTER =true;
     private static final Logger logger = LoggerFactory.getLogger(SpecialRoutesFilter.class);
 
+//    private static HttpResponse staticHttpResponse;
+
     @Autowired
     private FilterUtils filterUtils;
 
@@ -122,6 +124,9 @@ public class SpecialRoutesFilter extends ZuulFilter {
             logger.error("======> HttpClient response content {}", sc.nextLine());
         }
 
+        RequestContext ctx = RequestContext.getCurrentContext();
+        ctx.setResponseDataStream(httpResponse.getEntity().getContent());
+
         return httpResponse;
     }
 
@@ -151,11 +156,6 @@ public class SpecialRoutesFilter extends ZuulFilter {
         this.helper.setResponse(response.getStatusLine().getStatusCode(),
                 response.getEntity() == null ? null : response.getEntity().getContent(),
                 reverHeaders(response.getAllHeaders()));
-
-        Scanner sc = new Scanner(response.getEntity().getContent());
-        while (sc.hasNext()) {
-            logger.error("======> setResponse response content {}", sc.nextLine());
-        }
 
         /*RequestContext ctx = RequestContext.getCurrentContext();
         InputStream entity = response.getEntity().getContent();
@@ -199,7 +199,10 @@ public class SpecialRoutesFilter extends ZuulFilter {
         }
 
         httpRequest.setHeaders(convertHeaders(headers));
-        return forwardRequest(httpClient, httpHost, httpRequest);
+
+        HttpResponse response = forwardRequest(httpClient, httpHost, httpRequest);
+
+        return response;
     }
 
     private boolean useSpecialRoute(AbTestingRoute testingRoute) {
@@ -221,7 +224,6 @@ public class SpecialRoutesFilter extends ZuulFilter {
         AbTestingRoute abTestingRoute = getAbRoutingInfo(filterUtils.getServiceId());
 
         if (abTestingRoute != null && useSpecialRoute(abTestingRoute)) {
-            logger.error("======> Here, hahahahhhhh");
 
             String route = buildRouteString(ctx.getRequest().getRequestURI(),
                     abTestingRoute.getEndpoint(),
@@ -251,10 +253,11 @@ public class SpecialRoutesFilter extends ZuulFilter {
         try {
             httpClient = HttpClients.createDefault();
             response = forward(httpClient, verb, route, request, headers, params, requestEntity);
+
             setResponse(response);
 
-            logger.error("======> forwardToSpecialRoute context response body ===> {}", ctx.getResponseBody());
-            logger.error("======> forwardToSpecialRoute context response data stream ===> {}", ctx.getResponseDataStream());
+//            logger.error("======> forwardToSpecialRoute context response body ===> {}", ctx.getResponseBody());
+//            logger.error("======> forwardToSpecialRoute context response data stream ===> {}", ctx.getResponseDataStream());
         } catch (Exception ex) {
             ex.printStackTrace();
         } finally {

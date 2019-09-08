@@ -54,9 +54,11 @@ ribbon:
 
 logging:
 #  path: D:/tmp/logs
-  file: D:/tmp/logs/app.log
+#  file: D:/tmp/logs/app.log
   level:
-    root: ERROR
+    com.netflix: WARN
+    org.springframework.web: WARN
+    com.thoughtmechanix: INFO
 #  config: classpath:log4j2.properties
 #spring:
 #  output:

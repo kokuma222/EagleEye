@@ -19,9 +19,9 @@
         <spring-cloud.version>Camden.SR5</spring-cloud.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <start-class>com.thoughtmechanix.specialroutes.EagleEyeSpecialRoutesServiceApplication</start-class>
-        <docker.image.prefix>zzz</docker.image.prefix>
+        <docker.image.prefix>compose</docker.image.prefix>
         <docker.image.name>specialroutes</docker.image.name>
-        <docker.image.version>6.0.2</docker.image.version>
+        <docker.image.version>6.1.0</docker.image.version>
     </properties>
 
     <dependencies>

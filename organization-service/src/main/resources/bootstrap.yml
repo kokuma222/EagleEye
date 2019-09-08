@@ -3,7 +3,7 @@ spring:
     name: organizationservice
   cloud:
     config:
-      profile: dev
+      profile: com
       uri: http://192.168.0.129:8888
     inetutils:
       preferred-networks: 192.168.0
