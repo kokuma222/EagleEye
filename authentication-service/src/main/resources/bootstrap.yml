@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: authenticationservice
+  profiles:
+    active: default
+  cloud:
+    config:
+      enabled: true
+      profile: dev
+      uri: http://192.168.0.129:8888
+
+    inetutils:
+      preferred-networks: 192.168.0
+
+management:
+  security:
+    enabled: true
