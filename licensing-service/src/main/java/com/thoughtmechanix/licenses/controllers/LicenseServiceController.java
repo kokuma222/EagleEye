@@ -33,6 +33,9 @@ public class LicenseServiceController {
         return licenseService.getLicensesByOrg(organizationId);
     }
 
+    /**
+     * invoke organization service
+     * */
     @RequestMapping(value="/{licenseId}",method = RequestMethod.GET)
     public License getLicenses( @PathVariable("organizationId") String organizationId,
                                 @PathVariable("licenseId") String licenseId) throws InterruptedException {

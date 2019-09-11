@@ -27,6 +27,8 @@ zuul:
 #  routes:
 #    organizationservice: /organization/**
     licensingservice: /licensing/**
+#  auth config for passing Authorization
+  sensitive-headers: Cookie, Set-Cookie
 
 management:
   security:

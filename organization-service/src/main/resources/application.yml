@@ -23,3 +23,8 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: http://192.168.0.129:8761/eureka/
+
+security:
+  oauth2:
+    resource:
+      user-info-uri: http://192.168.0.129:8901/auth/user
