@@ -27,6 +27,7 @@ zuul:
 #  routes:
 #    organizationservice: /organization/**
     licensingservice: /licensing/**
+    authenticationservice: /auth/**
 
 management:
   security:

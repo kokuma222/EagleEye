@@ -23,3 +23,9 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: http://192.168.0.129:8761/eureka/
+
+logging:
+  level:
+    com.netflix: WARN
+    org.springframework.web: WARN
+    com.thoughtmechanix: DEBUG

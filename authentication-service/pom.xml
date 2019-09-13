@@ -15,8 +15,12 @@
     <description>Authentication Service for Eagle Eye</description>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
         <spring-cloud.version>Camden.SR5</spring-cloud.version>
+        <docker.image.prefix>jwt</docker.image.prefix>
+        <docker.image.name>auth-service</docker.image.name>
+        <docker.image.tag>7.1.2</docker.image.tag>
     </properties>
 
     <dependencies>
@@ -31,6 +35,10 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-eureka</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -79,6 +87,25 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.4.10</version>
+                <configuration>
+                    <imageName>${docker.image.prefix}/${docker.image.name}:${docker.image.tag}</imageName>
+                    <dockerDirectory>src/main/docker</dockerDirectory>
+                    <dockerHost>http://192.168.0.129:2375</dockerHost>
+                    <resources>
+                        <resource>
+                            <targetPath>/</targetPath>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
+                </configuration>
+            </plugin>
+
         </plugins>
     </build>
 

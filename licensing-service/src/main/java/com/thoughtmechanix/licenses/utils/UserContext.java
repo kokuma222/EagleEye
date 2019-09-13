@@ -5,44 +5,44 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserContext {
     public static final String CORRELATION_ID = "tmx-correlation-id";
-    public static final String AUTH_TOKEN = "tmx-auth-token";
+    public static final String AUTH_TOKEN = "Authorization";
     public static final String USER_ID = "tmx-user-id";
     public static final String ORG_ID = "tmx-org-id";
 
-    private String correlationId = "";
-    private String authToken = "";
-    private String userId = "";
-    private String orgId = "";
+    private static final ThreadLocal<String> correlationId= new ThreadLocal<>();
+    private static final ThreadLocal<String> authToken= new ThreadLocal<>();
+    private static final ThreadLocal<String> userId = new ThreadLocal<>();
+    private static final ThreadLocal<String> orgId = new ThreadLocal<>();
 
     public String getCorrelationId() {
-        return correlationId;
+        return correlationId.get();
     }
 
     public String getAuthToken() {
-        return authToken;
+        return authToken.get();
     }
 
     public String getUserId() {
-        return userId;
+        return userId.get();
     }
 
     public String getOrgId() {
-        return orgId;
+        return orgId.get();
     }
 
-    public void setCorrelationId(String correlationId) {
-        this.correlationId = correlationId;
+    public void setCorrelationId(String cid) {
+        correlationId.set(cid);
     }
 
-    public void setAuthToken(String authToken) {
-        this.authToken = authToken;
+    public void setAuthToken(String aToken) {
+        authToken.set(aToken);
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setUserId(String uid) {
+        userId.set(uid);
     }
 
-    public void setOrgId(String orgId) {
-        this.orgId = orgId;
+    public void setOrgId(String oid) {
+        orgId.set(oid);
     }
 }
