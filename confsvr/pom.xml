@@ -20,7 +20,7 @@
 		<java.version>1.8</java.version>
 		<spring-cloud.version>Camden.SR5</spring-cloud.version>
 		<docker.image.version>2.2.0</docker.image.version>
-		<docker.image.prefix>zzz</docker.image.prefix>
+		<docker.image.prefix>eye</docker.image.prefix>
 		<docker.image.name>confsvr</docker.image.name>
 	</properties>
 
@@ -67,7 +67,8 @@
 				<configuration>
 					<imageName>${docker.image.prefix}/${docker.image.name}:${docker.image.version}</imageName>
 					<dockerDirectory>src/main/docker</dockerDirectory>
-					<dockerHost>http://192.168.0.129:2375</dockerHost>
+					<dockerHost>http://192.168.0.140:2375</dockerHost>
+<!--					<dockerHost>http://192.168.0.129:2375</dockerHost>-->
 					<resources>
 						<resource>
 							<targetPath>/</targetPath>

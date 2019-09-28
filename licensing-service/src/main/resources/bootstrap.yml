@@ -6,7 +6,8 @@ spring:
     config:
 #      label: master
       profile: dev
-      uri: http://192.168.0.129:8888
+#      uri: http://192.168.0.129:8888
+      uri: http://192.168.0.140:8888
     inetutils:
       preferred-networks: 192.168.0
 

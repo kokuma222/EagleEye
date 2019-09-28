@@ -20,8 +20,8 @@
         <!--Docker build Config-->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <start-class>com.thoughtmechanix.eurekasvr.EurekaServerApplication</start-class>
-        <docker.image.name>zzz/tmx-eurekasvr</docker.image.name>
-        <docker.image.tag>chapter4.1.2</docker.image.tag>
+        <docker.image.name>eye/eurekasvr</docker.image.name>
+        <docker.image.tag>4.0.0</docker.image.tag>
     </properties>
 
     <dependencies>
@@ -62,7 +62,7 @@
                 <configuration>
                     <imageName>${docker.image.name}:${docker.image.tag}</imageName>
                     <dockerDirectory>src/main/docker</dockerDirectory>
-                    <dockerHost>http://192.168.0.129:2375</dockerHost>
+                    <dockerHost>http://192.168.0.140:2375</dockerHost>
                     <resources>
                         <resource>
                             <targetPath>/</targetPath>

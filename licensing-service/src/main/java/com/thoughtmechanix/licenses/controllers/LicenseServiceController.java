@@ -57,6 +57,7 @@ public class LicenseServiceController {
     @RequestMapping(value="{licenseId}",method = RequestMethod.PUT)
     public String updateLicenses( @PathVariable("licenseId") String licenseId) {
 //        return String.format("This is the put");
+        logger.warn("This is the put");
         return "This is the put";
     }
 
