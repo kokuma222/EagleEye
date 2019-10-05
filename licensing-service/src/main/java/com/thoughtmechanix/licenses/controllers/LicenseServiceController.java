@@ -37,7 +37,8 @@ public class LicenseServiceController {
     public License getLicenses( @PathVariable("organizationId") String organizationId,
                                 @PathVariable("licenseId") String licenseId) throws InterruptedException {
 
-        logger.warn("Found tmx-correlation-id in license-service-controller: {} ", request.getHeader("tmx-correlation-id"));
+//        logger.debug("Found tmx-correlation-id in license-service-controller: {} ", request.getHeader("tmx-correlation-id"));
+        logger.debug("Entering the license-service-controller  ");
         return licenseService.getLicense(organizationId, licenseId);
         /*return new License()
                 .withId(licenseId)

@@ -17,7 +17,7 @@ public class OrganizationRestTemplateClient {
 
     private static final Logger logger = LoggerFactory.getLogger(OrganizationRestTemplateClient.class);
 
-    /*public Organization getOrganization(String organizationId) {
+    public Organization getOrganization(String organizationId) {
         ResponseEntity<Organization> restExchange =
                 restTemplate.exchange(
                         "http://organizationservice/v1/organizations/{organizationId}",
@@ -25,9 +25,9 @@ public class OrganizationRestTemplateClient {
                         null, Organization.class, organizationId);
 
         return restExchange.getBody();
-    }*/
+    }
 
-    public Organization getOrganization(String organizationId) {
+    /*public Organization getOrganization(String organizationId) {
         logger.warn(">>> In licensing Service.getOrganization: {}. Thread Id: {}", UserContextHolder.getContext().getCorrelationId(), Thread.currentThread().getId());
 
         ResponseEntity<Organization> restExchange =
@@ -37,5 +37,5 @@ public class OrganizationRestTemplateClient {
                         null, Organization.class, organizationId);
 
         return restExchange.getBody();
-    }
+    }*/
 }
